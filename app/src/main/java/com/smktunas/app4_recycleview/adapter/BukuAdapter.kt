@@ -2,6 +2,7 @@ package com.smktunas.app4_recycleview.adapter
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,7 @@ import com.smktunas.app4_recycleview.model.Buku
 import com.smktunas.app4_recycleview.utils.DetailActivity
 
 class BukuAdapter(
-    private val activity: Activity,
+    private val context: Context,
     private val bukuList: MutableList<Buku>
 ) : RecyclerView.Adapter<BukuAdapter.ViewHolder>() {
 
@@ -25,7 +26,7 @@ class BukuAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(activity).inflate(R.layout.item_buku, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_buku, parent, false)
         return ViewHolder(view)
     }
 
@@ -38,16 +39,16 @@ class BukuAdapter(
         holder.tvTahun.text = buku.tahunTerbit
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(activity, "Memilih buku: ${buku.judul}", Toast.LENGTH_SHORT).show()
-            AlertDialog.Builder(activity)
+            Toast.makeText(context, "Memilih buku: ${buku.judul}", Toast.LENGTH_SHORT).show()
+            AlertDialog.Builder(context)
                 .setTitle("Lihat Detail Buku?")
                 .setMessage("Ingin melihat detail dari buku \"${buku.judul}\"?")
                 .setPositiveButton("Lihat") { _, _ ->
-                    val intent = Intent(activity, DetailActivity::class.java)
-                    intent.putExtra("buku_judul", buku.judul)
-                    intent.putExtra("buku_penulis", buku.penulis)
-                    intent.putExtra("buku_tahun", buku.tahunTerbit)
-                    activity.startActivity(intent)
+                    val intent = Intent(context, DetailActivity::class.java)
+                    intent.putExtra("judul", buku.judul)
+                    intent.putExtra("penulis", buku.penulis)
+                    intent.putExtra("tahun", buku.tahunTerbit)
+                    context.startActivity(intent)
                 }
                 .setNegativeButton("Batal", null)
                 .show()

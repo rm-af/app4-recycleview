@@ -14,12 +14,10 @@ class DetailActivity : AppCompatActivity() {
         val tvPenulis: TextView = findViewById(R.id.tvPenulis)
         val tvTahun: TextView = findViewById(R.id.tvTahun)
 
-        // Ambil data dari intent
-        val judul = intent.getStringExtra("buku_judul")
-        val penulis = intent.getStringExtra("buku_penulis")
-        val tahun = intent.getStringExtra("buku_tahun")
+        val judul = intent.getStringExtra("judul") ?: "Tidak ada judul"
+        val penulis = intent.getStringExtra("penulis") ?: "Tidak ada penulis"
+        val tahun = intent.getStringExtra("tahun") ?: "Tidak ada tahun"
 
-        // Tampilkan ke TextView
         tvJudul.text = judul
         tvPenulis.text = penulis
         tvTahun.text = tahun

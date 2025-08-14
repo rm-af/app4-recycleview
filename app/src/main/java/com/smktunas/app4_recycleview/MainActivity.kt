@@ -1,34 +1,32 @@
-package com.smktunas.app4_recycleview.utils
+package com.smktunas.app4_recycleview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.smktunas.app4_recycleview.R
 import com.smktunas.app4_recycleview.adapter.BukuAdapter
 import com.smktunas.app4_recycleview.model.Buku
+import com.smktunas.app4_recycleview.utils.DummyData
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var bukuAdapter: BukuAdapter
-    private val bukuList = mutableListOf<Buku>()
+    private lateinit var listBuku: MutableList<Buku>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main) // Layout utama yang berisi RecyclerView & tombol tambah
+        setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Data contoh
-        bukuList.add(Buku("Laskar Pelangi", "Andrea Hirata", "2005"))
-        bukuList.add(Buku("Bumi", "Tere Liye", "2014"))
-        bukuList.add(Buku("Negeri 5 Menara", "Ahmad Fuadi", "2009"))
-        bukuList.add(Buku("Filosofi Kopi", "Dewi Lestari", "2006"))
+        // Ambil data dari DummyData
+        listBuku = DummyData.listBuku.toMutableList()
 
-        // Pasang adapter
-        bukuAdapter = BukuAdapter(this, bukuList)
+        // Panggil BukuAdapter sesuai constructor yang kamu buat
+        bukuAdapter = BukuAdapter(this, listBuku)
+
         recyclerView.adapter = bukuAdapter
     }
 }

@@ -1,11 +1,11 @@
 📚 Project RecyclerView - Daftar Buku Perpustakaan
-
+-
 Materi ini membahas pembuatan aplikasi Android sederhana bertema Daftar Buku Perpustakaan menggunakan Android Studio dengan beberapa fitur utama, yaitu Splash Screen sebagai tampilan pembuka, RecyclerView untuk menampilkan daftar buku, Intent untuk navigasi antar Activity, Toast sebagai notifikasi singkat, dan Dialog Box untuk konfirmasi.
 
 ---
 
 👥 Tim
-
+-
 1. a
 2. a
 3. a
@@ -15,52 +15,79 @@ Materi ini membahas pembuatan aplikasi Android sederhana bertema Daftar Buku Per
 ---
 
 🔧 Teknologi
+-
+- Kotlin
 
-Kotlin
+- Android Studio
 
-Android Studio
+- RecyclerView + CardView
 
-RecyclerView + CardView
-
-Git & GitHub
+- Git & GitHub
 
 ---
 
 📱 Fitur yang Ada
-
+-
 📂 Splash Screen
-(foto code)
+---
+<img width="694" height="478" alt="Screenshot 2025-08-19 155828" src="https://github.com/user-attachments/assets/38cde642-ba8a-4f3e-af8e-fbe577673c52" />
 
-Kode program pada SplashActivity menampilkan logo/nama perpustakaan selama 3 detik sebelum masuk ke halaman utama.
+---
 
-Menggunakan Handler(Looper.getMainLooper()).postDelayed() dengan durasi 3000 ms.
+Kode di atas merupakan file layout XML untuk menampilkan Splash Screen aplikasi. Splash Screen adalah tampilan pembuka aplikasi yang muncul beberapa detik sebelum masuk ke halaman utama.
 
-Setelah jeda, aplikasi berpindah ke MainActivity menggunakan Intent.
+LinearLayout digunakan sebagai root layout dengan orientasi vertical dan posisi konten diatur ke tengah layar menggunakan android:gravity="center".
 
-finish() dipanggil agar SplashActivity tidak bisa kembali dengan tombol back.
+Latar belakang diatur menjadi warna putih dengan android:background="@color/white".
 
-Layout: activity_splash.xml berisi desain tampilan logo/teks.
+Di dalamnya terdapat sebuah ImageView berukuran 400dp x 400dp yang menampilkan gambar/logo aplikasi dari file drawable (@drawable/c).
+
+ID @+id/imgSplash diberikan agar komponen dapat diakses dari kode Kotlin di SplashScreen.kt.
+
+tools:context=".SplashScreen" menunjukkan bahwa layout ini digunakan pada Activity SplashScreen.
+
+
+⚙️ Cara Kerja
+
+Saat aplikasi dijalankan, SplashActivity akan memanggil layout ini (activity_splash.xml).
+
+Gambar/logo yang ada pada @drawable/c akan ditampilkan di tengah layar.
+
+Activity ini biasanya dikombinasikan dengan logika timer delay (Handler/Coroutine/Animation) agar logo muncul selama 2–3 detik.
+
+Setelah itu, aplikasi otomatis berpindah ke MainActivity menggunakan Intent.
+
+---
 
 📂 RecyclerView
-(foto code)
+---
+<img width="647" height="447" alt="Screenshot 2025-08-19 155952" src="https://github.com/user-attachments/assets/3f4d21f9-616f-4801-9039-bf72edbdcaf9" />
 
-RecyclerView digunakan untuk menampilkan daftar minimal 5 buku dengan informasi:
+---
 
-Judul
+ConstraintLayout
 
-Penulis
+Sebagai root layout.
 
-Tahun Terbit
+Lebar & tinggi match_parent → memenuhi seluruh layar.
 
-Icon buku
+Menggunakan tools:context=".MainActivity" agar otomatis terhubung ke MainActivity.
 
-Implementasi:
+RecyclerView
 
-RecyclerView dideklarasikan di activity_main.xml.
+ID: @+id/recyclerView (digunakan untuk memanggil di MainActivity).
 
-Menggunakan BookAdapter untuk menghubungkan data dengan tampilan.
+Lebar (layout_width) dan tinggi (layout_height) diatur 0dp, karena ukurannya mengikuti constraint (batas atas, bawah, kiri, kanan ke parent).
 
-Setiap item didesain di item_book.xml dengan CardView.
+app:layout_constraint... memastikan RecyclerView menempel di seluruh sisi parent, sehingga tampil full screen.
+
+RecyclerView adalah komponen Android yang digunakan untuk menampilkan daftar data (list/grid) secara efisien.
+
+Layout di atas menyiapkan wadah kosong RecyclerView full screen yang nanti akan diisi dengan data melalui Adapter di kode Kotlin/Java.
+
+File XML ini berfungsi untuk mendefinisikan tampilan halaman utama yang berisi RecyclerView. RecyclerView ditempatkan di dalam ConstraintLayout dan diposisikan memenuhi layar agar siap digunakan untuk menampilkan daftar item.
+
+---
 
 📂 Adapter (BookAdapter)
 (foto)
@@ -75,6 +102,8 @@ Menambahkan aksi klik pada item → memunculkan Toast + membuka detail buku lewa
 
 Layout item: item_book.xml (berisi ImageView, TextView, dan tombol aksi).
 
+---
+
 📂 Intent ke Detail Activity
 (foto)
 
@@ -86,24 +115,7 @@ Data judul, penulis, tahun diterima dengan getStringExtra().
 
 Ditampilkan di layout activity_book_detail.xml.
 
-📂 Toast Message
-(foto)
-
-Saat item buku diklik, muncul Toast dengan pesan:
-"Memilih: [judul buku]"
-
-Memberikan feedback singkat kepada pengguna.
-
-📂 Dialog Box (Konfirmasi)
-(foto)
-
-Saat tombol Lihat Buku ditekan → muncul AlertDialog konfirmasi.
-
-Jika Ya → masuk ke halaman detail buku.
-
-Jika Batal → dialog ditutup tanpa aksi.
-
-Dialog juga bisa dipakai untuk aksi lain seperti hapus buku.
+---
 
 🔄 Cara Kerja Aplikasi
 

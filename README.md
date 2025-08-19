@@ -89,31 +89,267 @@ File XML ini berfungsi untuk mendefinisikan tampilan halaman utama yang berisi R
 
 ---
 
-📂 Adapter (BookAdapter)
-(foto)
+📂 Detail Activity
+---
 
-BookAdapter bertugas:
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
 
-Menghubungkan data buku ke tampilan RecyclerView.
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi Buku"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src="@drawable/images"
+        android:contentDescription="Icon Siswa"
+        android:layout_marginBottom="30dp"/>
 
-Menampilkan judul, penulis, tahun, serta icon buku.
+    <TextView
+        android:id="@+id/tvJudul"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-Menambahkan aksi klik pada item → memunculkan Toast + membuka detail buku lewat Intent.
+    <TextView
+        android:id="@+id/tvPenulis"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-Layout item: item_book.xml (berisi ImageView, TextView, dan tombol aksi).
+    <TextView
+        android:id="@+id/tvTahun"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
 
 ---
 
-📂 Intent ke Detail Activity
-(foto)
+- LinearLayout
 
-BookDetailActivity menampilkan detail buku.
+Root layout dengan orientasi vertical, sehingga elemen disusun dari atas ke bawah.
 
-Data dikirim dari MainActivity lewat Intent.putExtra().
+padding="20dp" memberi jarak di semua sisi.
 
-Data judul, penulis, tahun diterima dengan getStringExtra().
+Lebar & tinggi match_parent, menyesuaikan layar penuh.
 
-Ditampilkan di layout activity_book_detail.xml.
+- TextView Judul Halaman
+
+Menampilkan teks "Deskripsi Buku".
+
+Diletakkan di bagian atas dengan ukuran besar (40sp), tebal (bold), warna hitam, dan teks rata tengah (gravity="center").
+
+- ImageView
+
+Menampilkan gambar dari resource @drawable/images.
+
+Lebar & tinggi 80dp.
+
+Diletakkan di tengah (layout_gravity="center").
+
+contentDescription digunakan sebagai deskripsi alternatif (aksesibilitas).
+
+- TextView tvJudul
+
+ID: @+id/tvJudul.
+
+Digunakan untuk menampilkan judul buku.
+
+Posisi di tengah, ukuran teks 20sp, tebal (bold).
+
+- TextView tvPenulis
+
+ID: @+id/tvPenulis.
+
+Menampilkan nama penulis.
+
+Teks berukuran 18sp, posisi di tengah.
+
+- TextView tvTahun
+
+ID: @+id/tvTahun.
+
+Menampilkan tahun terbit buku.
+
+Sama seperti tvPenulis, ukuran teks 18sp dan rata tengah.
+
+📌 Fungsi
+
+Layout ini digunakan untuk menampilkan halaman detail sebuah buku.
+
+Informasi yang ditampilkan meliputi:
+
+Judul Buku (tvJudul)
+
+Nama Penulis (tvPenulis)
+
+Tahun Terbit (tvTahun)
+
+Bagian atas terdapat judul halaman “Deskripsi Buku” dan gambar ilustrasi.
+
+📌 Kesimpulan
+
+activity_detail.xml merupakan layout untuk menampilkan detail data buku. Elemen-elemen ditata secara vertikal menggunakan LinearLayout. Dengan adanya TextView dan ImageView, pengguna dapat melihat informasi lengkap buku secara rapi dan terstruktur.
+
+---
+
+📂 RecycleView (adapter)
+
+---
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/images"
+            android:contentDescription="Icon Buku"
+            android:layout_marginEnd="12dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvJudul"
+                android:text="Judul Buku"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvPenulis"
+                android:text="Penulis"
+                android:textSize="14sp"
+                android:textColor="#555555"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvTahun"
+                android:text="Tahun Penerbit"
+                android:textSize="14sp"
+                android:textColor="#777777"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+---
+
+- CardView (Root)
+
+Membungkus seluruh item agar terlihat seperti kartu.
+
+cardCornerRadius="8dp" → sudut kartu melengkung.
+
+cardElevation="4dp" → memberi efek bayangan.
+
+layout_margin="8dp" → memberi jarak antar item di RecyclerView.
+
+- LinearLayout Utama
+
+Orientasi horizontal.
+
+Isi elemen disusun dari kiri ke kanan: gambar buku lalu informasi buku.
+
+gravity="center_vertical" → konten sejajar ke tengah secara vertikal.
+
+- ImageView
+
+Menampilkan gambar ikon buku dari @drawable/images.
+
+Ukuran 48dp x 48dp.
+
+layout_marginEnd="12dp" → jarak antara gambar dan teks.
+
+- LinearLayout Vertikal
+
+layout_weight="1" agar teks memenuhi sisa ruang setelah gambar.
+
+Menampung tiga TextView (judul, penulis, tahun).
+
+- TextView tvJudul
+
+ID: @+id/tvJudul.
+
+Untuk menampilkan judul buku.
+
+Teks bold, ukuran 18sp, warna hitam.
+
+- TextView tvPenulis
+
+ID: @+id/tvPenulis.
+
+Menampilkan nama penulis buku.
+
+Ukuran teks 14sp, warna abu-abu tua (#555555).
+
+- TextView tvTahun
+
+ID: @+id/tvTahun.
+
+Menampilkan tahun terbit buku.
+
+Ukuran teks 14sp, warna abu-abu muda (#777777).
+
+📌 Fungsi
+
+Layout ini digunakan sebagai tampilan item dalam RecyclerView.
+
+Setiap item buku ditampilkan dalam bentuk CardView berisi:
+
+Gambar sampul/ikon buku (ImageView)
+
+Judul buku (TextView)
+
+Nama penulis (TextView)
+
+Tahun terbit (TextView)
+
+📌 Kesimpulan
+
+item_buku.xml berfungsi sebagai template tampilan satu baris item pada RecyclerView. Dengan CardView dan kombinasi LinearLayout, tampilan menjadi rapi, modern, serta mudah dibaca.
 
 ---
 
@@ -130,12 +366,6 @@ Aplikasi menampilkan Dialog Konfirmasi sebelum membuka detail.
 Jika pengguna setuju → pindah ke BookDetailActivity menggunakan Intent.
 
 BookDetailActivity menampilkan informasi detail buku.
-
----
-
-📂 Struktur File
-
-o
 
 ---
 

@@ -6,11 +6,11 @@ Materi ini membahas pembuatan aplikasi Android sederhana bertema Daftar Buku Per
 
 👥 Tim
 -
-1. a
-2. a
-3. a
-4. a
-5. a
+1. Liana A (20)
+2. M.NAUFAL SAIFULLOH (22)
+3. Rama Aditya F. (33)
+4. Sabila Zahrani (34)
+5. Widya Yuniar (37)
 
 ---
 
@@ -388,8 +388,11 @@ Aplikasi ini sederhana namun fungsional, melatih pemahaman tentang RecyclerView,
 ---
 
 ✨ Hasil
-1
-2
-3
-4
-5
+
+![WhatsApp Image 2025-08-19 at 17 08 39_4a14bd25](https://github.com/user-attachments/assets/84beed4c-a4dc-461b-8cd7-b5757d9224a7)
+
+
+![WhatsApp Image 2025-08-19 at 17 08 39_5e0891dd](https://github.com/user-attachments/assets/cb59ccf3-be90-44f0-abab-9d9c64e6a6d4)
+
+
+![WhatsApp Image 2025-08-19 at 17 08 40_51aa0687](https://github.com/user-attachments/assets/cc64ac80-273f-45e3-a917-41e163984883)
